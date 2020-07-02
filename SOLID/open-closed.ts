@@ -1,3 +1,5 @@
+// Open for extension, closed for modification
+
 enum Color {
   red = 'red',
   green = 'green',
@@ -14,7 +16,6 @@ class Product {
   constructor(public name: string, public color: Color, public size: Size) {}
 }
 
-// Open for extension, closed for modification
 class ProductFilter {
   constructor() {}
 
@@ -29,7 +30,7 @@ class ProductFilter {
   filterBySizeAndColor(products: Product[], size: Size, color: Color) {
     return products.filter(p => p.size === size && p.color === color);
   }
-
+  // ...
   // state space explosion
   // 3 criteria = 7 methods
 }
