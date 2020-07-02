@@ -1,5 +1,3 @@
-import * as fs from 'fs';
-
 class Journal {
   static count = 0;
 
