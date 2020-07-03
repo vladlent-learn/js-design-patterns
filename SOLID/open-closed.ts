@@ -40,16 +40,20 @@ abstract class Specification {
   abstract isSatisfied(item: any): boolean;
 }
 
-class ColorSpecification implements Specification {
-  constructor(public color: Color) {}
+class ColorSpecification extends Specification {
+  constructor(public color: Color) {
+    super();
+  }
 
   isSatisfied(product: Product) {
     return product.color === this.color;
   }
 }
 
-class SizeSpecification implements Specification {
-  constructor(public size: Size) {}
+class SizeSpecification extends Specification {
+  constructor(public size: Size) {
+    super();
+  }
 
   isSatisfied(product: Product) {
     return product.size === this.size;
@@ -57,10 +61,11 @@ class SizeSpecification implements Specification {
 }
 
 // combinator
-class AndSpecification implements Specification {
+class AndSpecification extends Specification {
   specs: Specification[];
 
   constructor(...specs: Specification[]) {
+    super();
     this.specs = specs;
   }
 
@@ -68,15 +73,22 @@ class AndSpecification implements Specification {
     return this.specs.every(spec => spec.isSatisfied(item));
   }
 }
-class OrSpecification implements Specification {
+class OrSpecification extends Specification {
   specs: Specification[];
 
   constructor(...specs: Specification[]) {
+    super();
     this.specs = specs;
   }
 
   isSatisfied(item: any): boolean {
     return this.specs.some(spec => spec.isSatisfied(item));
+  }
+}
+
+class BetterFilter {
+  filter(items: any[], spec: Specification) {
+    return items.filter(item => spec.isSatisfied(item));
   }
 }
 
@@ -91,12 +103,6 @@ console.log(`Green products (old):`);
 pf.filterByColor(products, Color.green).forEach(product =>
   console.log(` * ${product.name} is green`),
 );
-
-class BetterFilter {
-  filter(items: any[], spec: Specification) {
-    return items.filter(item => spec.isSatisfied(item));
-  }
-}
 
 const bf = new BetterFilter();
 console.log(`Green products (new):`);

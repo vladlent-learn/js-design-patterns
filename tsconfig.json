@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "types": ["node"]
+    "types": ["node"],
+    "lib": ["ESNext"]
   },
-  "exclude": ["./node_modules"]
+  "exclude": ["node_modules"]
 }
