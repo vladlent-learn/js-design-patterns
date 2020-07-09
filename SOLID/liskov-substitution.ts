@@ -22,7 +22,7 @@ class Rectangle {
     return `${this._width}x${this._height}`;
   }
 }
-
+// Bad
 class Square extends Rectangle {
   get width() {
     return this._width;
